@@ -200,63 +200,78 @@ svg {
   }
 }
 
-nav {
-  background-color: #fff;
-  border-bottom: 1px solid #555;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.icon {
-  flex: 1;
-  width: 100%;
-}
-.icon .toggle {
-  float: right;
-  margin: 20px;
-  color: #222;
-  font-size: 30px;
-  padding: 0px 5px;
-  border-radius: 4px;
+nav .hamburger {
+  background: lightgrey;
+  color: #292929;
+  font-size: 24px;
+  padding: 0.6em;
   cursor: pointer;
+  display: block;
 }
-
-.list-item {
-  width: 100%;
+nav .topLevel {
+  display: none;
+  position: static;
+  background: #e3e3e3;
   margin: 0;
   padding: 0;
-  position: relative;
-  top: -4px;
-  display: none;
-  padding-bottom: 20px;
+  list-style-type: none;
+  background: #e3e3e3;
 }
-.list-item li {
-  padding: 10px;
-  margin-right: 20px;
-  text-align: center;
+nav .topLevel li {
   display: block;
-  float: none;
 }
-.list-item li a {
-  color: #222;
+nav .topLevel li:hover {
+  background: lightgrey;
 }
-.list-item li a:hover {
-  color: red;
+nav .topLevel li:hover ul {
+  display: none;
 }
-
-@media (min-width: 992px) {
-  nav {
-    flex-wrap: nowrap;
-  }
-  .icon {
+nav .topLevel li a {
+  color: #292929 !important;
+  text-decoration: none !important;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .topLevel li a i {
+  color: #292929;
+  float: right;
+  padding-left: 20px;
+}
+nav .secondLevel {
+  display: none;
+  position: static;
+  min-width: 200px;
+  background: lightgrey;
+  left: 0px;
+  width: 100%;
+}
+nav .secondLevel li {
+  display: block;
+  background: #e3e3e3;
+}
+@media (min-width: 768px) {
+  nav .hamburger {
     display: none;
   }
-  .list-item {
+  nav .topLevel {
     display: flex;
-    justify-content: flex-end;
-    padding-bottom: 0;
+    position: relative;
+    width: 100%;
+  }
+  nav .topLevel li {
+    display: inline-block;
+    width: 100%;
+  }
+  nav .topLevel li:hover ul {
+    display: flex;
+  }
+  nav .secondLevel {
+    position: absolute;
+  }
+  nav .topLevel li a {
+    justify-content: flex-start;
   }
 }
 
