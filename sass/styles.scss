@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'mixins';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;600&display=swap');
 
 
 *,
@@ -9,397 +9,413 @@
   box-sizing: border-box;
 }
 
+
 body {
+  z-index: 1;
   position: relative;
   height: 100%;
   margin: 0;
   overflow-x: hidden; 
-  background-color: $base-background-color;
-	color: $base-font-color;
+  background-color: $dark;
+  color: $white;
   font-family: $body-font;
   font-weight: 400;
   font-size: $base-font-size;
   line-height: $base-line-height;
-
-  @media #{$mq-medium} {
-    font-size: $base-font-size*1.2;
-    line-height: $base-line-height*1.2;
-  }
-
-  @media #{$mq-large} {
-    font-size: $base-font-size*1.6;
-  }
-
-  @media #{$mq-xlarge} {
-    font-size: $base-font-size * 1.8
-  }
-
-  @media #{$mq-xxlarge} {
+  opacity: 1;
+  @media #{$mq-retina} {
     font-size: $base-font-size*2;
   }
 }
+
+.body-wrapper{
+    @include transition;
+    padding-top:100px;
+    @media #{$mq-medium}{
+        padding-top: 130px;
+    }
+}
+
 
 ::-webkit-scrollbar {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
-.overflow-wrapper{
-	overflow-x: hidden;
-	overflow-y:hidden;
-}
 
-a {
-  color: $base-accent-color;
-  transition: color $base-transition-duration $base-transition-timing;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: darken($base-accent-color, 10%);
-  }
-}
 
 ul {
   padding: 0;
   list-style: none;
 }
 
-/**
- * Typography
- */
  p {
   margin: 0 0 $base-spacing;
+  text-wrap: pretty;
+}
+a{
+    text-decoration: none;
+    color:$dark
 }
 
-@function headings($from:1, $to:6) {
-    @if $from == $to {
-        @return 'h#{$from}';
-    } @else {
-        @return 'h#{$from},' + headings($from+1, $to);
+
+h1,h2,h3,h4,h5,h6 {
+  line-height: $header-line-height;
+  font-family: $header-font;
+  margin: 0;
+  font-weight: 400;
+
+}
+
+h1{
+    font-size: calc($base-font-size*4.5); 
+    margin-bottom:$sm;
+    font-weight:500;
+}
+h2{
+    font-size: calc($base-font-size*2.5);
+}
+h3{
+    font-size: calc($base-font-size*2.1); 
+    line-height:1em;
+    font-weight: 500;
+    margin-bottom: $base-font-size*.7;
+}
+
+
+.large-p{
+    font-size: calc($base-font-size*1.7);
+    line-height: 1.1em;
+}
+
+@media #{$mq-small} {
+    h1{font-size: calc($base-font-size*8.9);}
+    h2{font-size: calc($base-font-size*6.25);}
+    .large-p{
+        font-size: calc($base-font-size*1.9);
+    }
+}
+@media #{$mq-medium} {
+    h1{font-size: calc($base-font-size*5.8);}
+    h2{font-size: calc($base-font-size*4.8);}
+}
+@media #{$mq-desktop} {
+    h1{font-size: calc($base-font-size*8);}
+    h2{font-size: calc($base-font-size*6.25);}
+}
+@media #{$mq-figma} {
+    h1{font-size: calc($base-font-size*9.2);}
+}
+@media #{$mq-large} {
+    h1{font-size: calc($base-font-size*11.2);}
+}
+
+
+.text-center{
+    text-align: center;
+  }
+  
+  .text-right{
+    text-align: right;
+  }
+  
+
+.btn{
+    display: flex;
+    a{
+        background-color: $base-accent-color;
+        padding: $base-font-size*.6 $base-font-size*1.5;
+        color: $dark;
+        text-decoration: none;
+        border-radius: 6vw;
+        &:hover{
+            @include transition;
+            background-color: $white;
+        }
+    }
+
+}
+button{
+    border:none;
+    display: flex;
+    border-radius: 6vw; 
+    background-color: $dark;
+    padding: $base-font-size*.6 $base-font-size*1.5;
+    color: $white;
+    font-size: $base-font-size;
+    line-height: 1em;
+    &:hover{
+        @include transition;
+        background-color: $base-accent-color;
+        color: $dark;
+    }
+}
+  
+.dark{
+    background-color: $dark;
+    h1,h2,h3,h4,h5,h6{
+        color:$base-accent-color;
+    }
+    ul li a,
+    p, input, textarea, select{
+        color:$white;
+    }
+  }
+
+  .accent{
+    background-color: $base-accent-color;;
+    h1,h2,h3,h4,h5,h6{
+        color:$dark
+    }
+    .dark p{
+        color:$white
+    }
+    p, input, textarea, select{
+        color:$dark
+    }
+
+  }
+
+  .light{
+    background-color: $light;
+    color:$dark;
+    h1,h2,h3,h4,h5,h6{
+        color:$dark;
+    }
+    ul li a,
+    p, input, textarea, select{
+        color:$dark;
+    }
+  }
+
+
+
+/**
+ * image related
+ */
+
+figure{
+    margin: 0;
+}
+img {
+  width:100%;
+}
+
+.img-fit{
+    width: 100%;
+    height:100vw;
+    object-fit: cover;
+    @media #{$mq-medium}{
+        height: 40vw;
     }
 }
 
-#{headings(1,6)} {
-	line-height: $header-line-height;
+
+.bg-cover{
+  @include bg-img-pos(50% 50%, cover);
+  min-height:300px
 }
 
-
-  //**********************************
-
-img {
-  max-width: 100%;
-}
-
-.bg-img {
-  width:100%;
-  @include bg-img(url("https://public-619e3.firebaseapp.com/Death-Star/detail_sml.jpg"), 50% 50%, cover);
-}
-
-.detail {
-  height: 0;
-  padding-bottom: 56.25%;
-  margin: 0 0 $base-spacing*2;
-  background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_sml.jpg);
-  background-position: center center;
-  background-size: cover;
-
-  @media #{$mq-xlarge} and #{$mq-retina} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_sml@2x.jpg);
-  }
-
-  @media #{$mq-medium} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_med.jpg);
-  }
-
-  @media #{$mq-medium} and #{$mq-retina} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_med@2x.jpg);
-  }
-
-  @media #{$mq-large} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_lrg.jpg);
-  }
-
-  @media #{$mq-large} and #{$mq-retina} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_lrg@2x.jpg);
-  }
-
-  @media #{$mq-xlarge} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_xlrg.jpg);
-  }
-
-  @media #{$mq-xlarge} and #{$mq-retina} {
-    background-image: url(https://public-619e3.firebaseapp.com/Death-Star/detail_lrg@2x.jpg);
-  }
-
-}
-
-
-
-
-
-//imgs as bg images
-.box-wrapper{
-  width: 100%;
-  height: 70vw;
-  .media-box{
-    position: relative; 
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    img {
-      width:100%;
-      height:100%;
-      position: absolute;
-      bottom: 1px;
-      left: 0;
-      -o-object-fit: cover; 
-      object-fit: cover;
-      -o-object-position: 50% 50%; 
-      object-position: 50% 50%;
-    } 
-  } 
-  .overlay::after{
-    @include after(1);
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    left: 0;
-    top: 0;
-  }
-  @media #{$mq-medium} {
-    height: 100%;
-  }
-}
-
-figure {
-  margin: 0;
-  z-index: 1;
-  width: 100%;
-  position: relative;
-  svg{
-    width: 100%;
-    z-index: 1;
-  }
-}
 
 svg {
   overflow: visible !important;
+  z-index: 1;
 }
 
 
+/**
+ * width, padding and wrappers
+ */
 
-.wrapper {
-  margin: 0 4%;
+
+
+
+.pad-all{
+  padding:$base-font-size*3.76 $base-font-size*1.88;
+}
+
+.pad-sides{
+  padding-left:$base-font-size*1.88;
+  padding-right:$base-font-size*1.88;
 
   @media #{$mq-medium} {
-    margin: 0 8%;
-    // padding: $base-spacing*2 0;
+    &.no-left{
+      padding-left:0
+    }
+    &.no-right{
+      padding-right:0
+    }
   }
+}
 
-  @media #{$mq-large} {
-    margin: 0 12%;
-  }
+.pad-top{
+  padding-top: $base-font-size*3.76
+}
 
-  @media #{$mq-xlarge} {
-    margin: 0 18%;
-  }
+.pad-btm{
+  padding-bottom: $base-font-size*3.76
 }
 
 
 
 
-// nav{
-//   .logo{
-//     max-width:70px
-//   }
-//   ul {
-//     margin: 0;
-//     padding: 0;
-//     list-style-type: none;
-//     background: #e3e3e3;
-//     position: static;
-//     li {
-//       display: block;
-//       a {
-//         color: #292929 !important;
-//         text-decoration: none !important;
-//         padding: 15px;
-//         display: block;
 
-//       }
-//       &:hover {
-//         background: lightgrey;
-//       }
-//     }
-//   }
-//   @media (min-width:768px){
-//     .topLevel,
-//     .topLevel a{
-//       display: flex;
-//       width: 100%;
-//       align-items: center;
-//     }
-//   }
-
-// }
-
-
-
-// ul ul {
-//   position: absolute;
-//   min-width: 200px;
-//   background: lightgrey;
-//   display: none;
-//   left: 0px;
-//   width: 100%;
-// }
-
-// ul ul li{
-//   display: block;
-//   background: #e3e3e3;
-// }
-
-// ul li:hover ul{
-//   display: flex;
-// }
-
-// ul li i {
-//   color: #292929;
-//   float: right;
-//   padding-left: 20px;
-// }
-
-// .hamburger{
-//   background: lightgrey;
-//   color: #292929;
-//   font-size: 24px;
-//   padding: 0.6em;
-//   cursor: pointer;
-//   display: block;
-// }
-
-// @media(min-width: 768px){
-//   .hamburger{
-//     display: none;
-//   }
-//   ul{
-//     position: relative;
-//     li{
-//       display: flex;
-//     }
-//   }
-// }
-
-// @media(max-width: 768px){
-
-  
-//   ul ul {
-//     position: static;
-//     background: #e3e3e3;
-//   }
-//   ul li:hover ul{
-//     display: none;
-//   }
-  
-// }
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-nav{
-.hamburger{
-  background: lightgrey;
-  color: #292929;
-  font-size: 24px;
-  padding: 0.6em;
-  cursor: pointer;
-  display: block;
-}
-
-.topLevel{
-  display: none;
-  position: static;
-  background: #e3e3e3;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  background: #e3e3e3;
-  li {
-    display: block;
-    &:hover {
-      background: lightgrey;
-    }
-    &:hover ul{
-      display: none;
-    }
-    a {
-      color: #292929 !important;
-      text-decoration: none !important;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      i {
-        color: #292929;
-        float: right;
-        padding-left: 20px;
+/**
+ * flex
+ */
+.flex-wrap{
+  display: flex;
+  flex-direction:column;
+  &.wrap{
+    flex-wrap: wrap;
+    flex-direction:row;
+  }
+  @media #{$mq-medium} {
+    .half{
+      flex:1;
+      flex-basis: 50%;
+      &.grow-vis{
+        flex-basis: 65%;
       }
     }
+
+    .third{
+      flex:1;
+      flex-basis: 33.33%;
+    }
+    &.col{
+        flex-direction: column;
+    }
+    flex-direction:row;
   }
 }
 
-.secondLevel {
-  display: none;
-  position: static;
-  min-width: 200px;
-  background: lightgrey;
-  left: 0px;
+
+
+.cont-just-end,
+.just-cont-center-row,
+.img-align-item-center,
+.cont-align-end,
+.just-cont-center,
+.just-cont-between,
+.align-items-center,
+.img-align-end{
+  display: flex;
+  
+}
+
+.img-align-end{
+  align-items: flex-end;
+}
+
+.img-align-item-center{
+  align-items: center;
+}
+
+.cont-align-end{
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cont-just-end{
+  justify-content: flex-end;
+}
+.just-cont-between{
+  flex-direction: column;
+  justify-content: space-between;
+}
+.just-cont-center{
+  flex-direction: column;
+  justify-content: center;
+}
+.just-cont-center-row{
+  justify-content: center;
+}
+
+.align-items-center{
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  li{
-    display: block;
-    background: #e3e3e3;
-  }
 }
 
-  @media(min-width: 768px){
-    .hamburger{
-      display: none;
+/////////
+/// 
+/// 
+nav{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:0;
+    z-index: 5;
+    font-size: $base-font-size*2;
+    .fa-bars{
+        color:$white;
     }
-   .topLevel{
-      display: flex;
-      position: relative;
-      width: 100%;
-      li {
-        display: inline-block;
-        width:100%;
-        &:hover ul{
-          display: flex;
+    .logo{
+        max-height:40px
+    }
+
+    .mobile-nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $dark;
+        padding: $base-font-size*.5;
+        z-index: 5;
+        position: relative;
+    }
+
+    .desktop-nav{
+        padding: $base-font-size;
+        position: fixed;
+        left: 0;
+        top: -100%;
+        display: block;
+        width: 100%;
+        transition: all 0.5s ease;
+        background-color: $dark;
+        z-index: 3;
+        transition: top 0s linear;
+        &.active{
+            transition: top .3s linear;
+            top:70px;
         }
-      }
+
+        ul{
+            padding:0;
+            margin: 0;
+            width: 100%;
+            .logo-wrapper{
+                display:none;
+            }
+            li{
+                padding: $base-font-size 0;
+            }
+        }
     }
-    .secondLevel {
-      position: absolute;
+
+    @media #{$mq-small}{
+        font-size: $base-font-size;
+        height: 0;
+        .mobile-nav{
+            display:none;
+        }
+        .desktop-nav{
+           position: relative;
+           top:0;
+            ul {
+                display:flex;
+                justify-content: space-between;
+                align-items: center;
+                .logo-wrapper{
+                    display:block;
+                }
+                li{
+                    padding:0 $base-font-size ;
+                }
+            }
+        }
     }
-    .topLevel li a{
-      justify-content: flex-start;
-    }
-  }
+
 }
+

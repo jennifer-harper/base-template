@@ -1,13 +1,73 @@
 $('.toggle').click(function () {
-    "use strict";
-    $('nav ul').slideToggle();
-});
-
-
+  'use strict'
+  $('nav ul').slideToggle()
+})
 
 $(window).resize(function () {
-    "use strict";
-    if ($(window).width() > 992) {
-        $('nav ul').removeAttr('style');
-    }
-});
+  'use strict'
+  if ($(window).width() > 992) {
+    $('nav ul').removeAttr('style')
+  }
+})
+
+let navLinks = document.querySelector('.desktop-nav')
+let menuOpenBtn = document.querySelector('.hamburger')
+
+////On toggleMenu, change navLinks top position, to show or hide nav links dropdown
+function toggleMenu() {
+  if (navLinks.classList.contains('active')) {
+    navLinks.classList.remove('active')
+  } else {
+    navLinks.classList.add('active')
+  }
+}
+menuOpenBtn.addEventListener('click', toggleMenu)
+
+//////Close the menu, if the user touches outside of it
+function closeMenu(event) {
+  if (!navLinks.contains(event.target) && !menuOpenBtn.contains(event.target)) {
+    navLinks.classList.remove('active')
+  }
+}
+document.addEventListener('touchstart', closeMenu)
+document.addEventListener('click', closeMenu)
+
+//////Add event listener to close menu when an anchor inside the nav is clicked
+let navAnchors = navLinks.querySelectorAll('a')
+
+navAnchors.forEach((anchor) => {
+  anchor.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    // Smooth scroll with offset
+    //substring removes hash
+    let targetId = this.getAttribute('href').substring(1)
+    let targetElement = document.getElementById(targetId)
+
+    // Remove active class from navLinks/close nav
+    navLinks.classList.remove('active')
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: targetElement.offsetTop - 60,
+        behavior: 'smooth',
+      })
+    }, 300)
+  })
+})
+
+//if hamburger toggle is open and user changes screen width, greater than 768px, hamburger open toggle/ active state removed.
+//Desktop nav ccs is active.
+function toggleMobileNav() {
+  if (window.innerWidth > 768) {
+    console.log('desktop')
+    navLinks.classList.remove('active')
+  } else {
+    console.log('mobile')
+  }
+}
+// Initial check
+toggleMobileNav()
+// Listen for window resize and orientation change events
+window.addEventListener('resize', toggleMobileNav)
+window.addEventListener('orientationchange', toggleMobileNav)

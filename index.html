@@ -5,57 +5,50 @@
     <meta name="description" content="" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
-    <title>Boilerplate Ambitious</title>
+    <title>Bolierplate</title>
+
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+
     <link rel="stylesheet" type="text/css" href="sass/styles.css" />
   </head>
 
   <body>
-    <header>
-      <nav>
-        <div class="hamburger"><i class="fa fa-bars"></i></div>
-        <ul class="topLevel">
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Drop 1 <i class="fa-solid fa-plus"></i></a>
-            <ul class="secondLevel">
-              <li><a href="#">Product 1</a></li>
-              <li><a href="#">Product 2</a></li>
-              <li><a href="#">Product 3</a></li>
-              <li><a href="#">Product 4</a></li>
-              <li><a href="#">Product 5</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Drop 2 <i class="fa-solid fa-plus"></i></a>
-            <ul class="secondLevel">
-              <li><a href="#">Thing 1</a></li>
-              <li><a href="#">Thing 2</a></li>
-              <li><a href="#">Thing 3</a></li>
-              <li><a href="#">Thing 4</a></li>
-              <li><a href="#">Thing 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </nav>
-    </header>
+    <nav class="dark">
+      <div class="mobile-nav">
+        <a href="/" class="mobile-logo">
+          <img src="img/favicon.png" alt="" class="logo" />
+        </a>
+        <div class="hamburger">
+          <i class="fa fa-bars"></i>
+        </div>
+      </div>
+      <div class="desktop-nav">
+        <div class="nav-links-wrapper">
+          <ul class="links">
+            <li class="logo-wrapper">
+              <a href="/"> <img src="img/favicon.png" alt="" class="logo" /></a>
+            </li>
+            <li class="link">
+              <a href="#about-us">About Us</a>
+            </li>
+            <li>
+              <a href="#benefits">Benefits</a>
+            </li>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <li>
+              <a href="#testimonials">Testimonials</a>
+            </li>
+            <li>
+              <a href="#contact">Contact us</a>
+            </li>
+          </ul>
+          <box-icon name="hot"></box-icon>
+        </div>
+      </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://kit.fontawesome.com/b3510dc66a.js" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
-
-    <script>
-      $('nav .hamburger').click(function () {
-        $('.topLevel').toggle()
-      })
-
-      $('.topLevel li').click(function () {
-        $(this).find('ul').toggle()
-      })
-    </script>
   </body>
 </html>
